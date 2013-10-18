@@ -61,8 +61,8 @@ Important folders:
 | wpweeklyplanner_WP7/SampleData | Application sample data. |
 | wpweeklyplanner_WP7/Themes | Application specific theming. |
 | wpweeklyplanner_WP7/ViewModels | ViewModels of the application. |
-| RSSReader_WP8/Content | Graphic files. |
-| RSSReader_WP8/Properties | WP8 Application property files. |
+| wpweeklyplanner_WP8/Content | Graphic files. |
+| wpweeklyplanner_WP8/Properties | WP8 Application property files. |
 
 Important files:
 
@@ -84,17 +84,17 @@ No known issues.
 License
 -------
 
-    Copyright © 2011-2013 Nokia Corporation. All rights reserved.
+    Copyright ¬© 2011-2013 Nokia Corporation. All rights reserved.
     Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
     Other product and company names mentioned herein may be trademarks or trade names
     of their respective owners.
       
     Subject to the conditions below, you may, without charge:
   
-    ∑  Use, copy, modify and/or merge copies of this software and 
-       associated content and documentation files (the ìSoftwareî)
+    ¬∑  Use, copy, modify and/or merge copies of this software and 
+       associated content and documentation files (the ‚ÄúSoftware‚Äù)
   
-    ∑  Publish, distribute, sub-licence and/or sell new software 
+    ¬∑  Publish, distribute, sub-licence and/or sell new software 
        derived from or incorporating the Software.
       
     Some of the documentation, content and/or software maybe licensed under open source
