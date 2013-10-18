@@ -1,0 +1,80 @@
+﻿<!--
+ Copyright © 2011-2013 Nokia Corporation. All rights reserved.
+ Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
+ Other product and company names mentioned herein may be trademarks
+ or trade names of their respective owners. 
+ See LICENSE.TXT for license information.
+-->
+<phone:PhoneApplicationPage 
+    x:Class="wpweeklyplanner.DetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    d:DataContext="{d:DesignData SampleData/EventViewModelSampleData.xaml}"
+    shell:SystemTray.IsVisible="False">
+
+    <!-- TransitionService is part of Silverlight Toolkit which does not ship as part of this
+         example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/Content/background02.png" />
+        </Grid.Background>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="AppTitle" Text="{Binding Path=LocalizedResources.AppTitle, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppTitleBrush}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.TitleEvent, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource TitleColor1Brush}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel Margin="12,0,12,0">
+                <TextBlock Text="{Binding Text}" Style="{StaticResource PhoneTextExtraLargeStyle}" Margin="0,0,0,24"
+                            Foreground="{StaticResource WeeklyFontBrush}" FontFamily="Comic Sans MS" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding Converter={StaticResource StartTimeConverter}}" Style="{StaticResource PhoneTextLargeStyle}"
+                           Foreground="{StaticResource WeeklyFontBrush}"/>
+                <TextBlock Text="{Binding Converter={StaticResource EndTimeConverter}}" Style="{StaticResource PhoneTextLargeStyle}"
+                           Foreground="{StaticResource WeeklyFontBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

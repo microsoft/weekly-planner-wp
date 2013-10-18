@@ -1,0 +1,186 @@
+﻿<!--
+ Copyright © 2011-2013 Nokia Corporation. All rights reserved.
+ Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
+ Other product and company names mentioned herein may be trademarks
+ or trade names of their respective owners. 
+ See LICENSE.TXT for license information.
+-->
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:custom="clr-namespace:wpweeklyplanner;assembly=wpweeklyplanner"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows">
+    
+    <Color x:Key="WeeklyGridColor">#C4AEC6</Color>
+    <SolidColorBrush x:Key="WeeklyGridBrush" Color="{StaticResource WeeklyGridColor}" />
+    <Color x:Key="WeeklyOutlineColor">#FF5039</Color>
+    <SolidColorBrush x:Key="WeeklyOutlineBrush" Color="{StaticResource WeeklyOutlineColor}" />
+
+    <Style x:Name="custom:WeeklyRow" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="LayoutRoot"
+                          Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
+                          Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.150" Value="{StaticResource PhoneForegroundBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   Foreground="{StaticResource WeeklyFontBrush}" Margin="0,0,5,0"/>
+                        <Rectangle Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                   Fill="{StaticResource WeeklyGridBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="custom:WeeklyEvent">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:WeeklyEvent">
+                    <Grid x:Name="LayoutRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.150" Value="{StaticResource PhoneForegroundBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0.150" Value="0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        
+                        <!-- This rectangle is used to catch input. It is needed because in unselected state LayoutRoot
+                             has Transparent background and user could select the event only by clicking on the stripe
+                             or the text only. With this rectangle the whole area of LayoutRoot gets associated with the event -->
+                        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="Transparent" />
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <Grid HorizontalAlignment="Left" Width="17" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image x:Name="EventGfxTop" Grid.Row="0" Stretch="Fill" />
+                                <Image x:Name="EventGfxMiddle" Grid.Row="1" Stretch="Fill" />
+                                <Image x:Name="EventGfxBottom" Grid.Row="2" Stretch="Fill" />
+                            </Grid>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Foreground="{StaticResource WeeklyFontBrush}" Margin="1,0,0,0"
+                                       FontFamily="Comic Sans MS" FontSize="24" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="custom:WeeklyGrid">
+        <Setter Property="StartHour" Value="6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:WeeklyGrid">
+                    <Grid x:Name="LayoutRoot"
+                          Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
+                          Background="{TemplateBinding Background}"
+                          CacheMode="BitmapCache">
+                        <!-- It would be best if column width&height would be properties
+                             of the WeeklyGrid and they would be bound to column/row definitions.
+                             Unfortunately ColumnDefinition and RowDefinition are framework
+                             elements only in .NET 3/4. In Silverlight they inherit from DependencyObject
+                             and therefore do not support data binding
+                        -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                            <RowDefinition Height="95" />
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Out line -->
+                        <Rectangle Grid.Column="0" Grid.Row="0" Grid.RowSpan="14"
+                                   Fill="{StaticResource WeeklyOutlineBrush}"
+                                   HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                   Width="3"/>
+
+                        <!-- Time column -->
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="0" Content="06:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="1" Content="07:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="2" Content="08:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="3" Content="09:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="4" Content="10:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="5" Content="11:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="6" Content="12:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="7" Content="13:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="8" Content="14:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="9" Content="15:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="10" Content="16:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="11" Content="17:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="12" Content="18:00" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="0" Grid.Row="13" Content="19:00" />
+                        
+                        <!-- Event column -->
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="0" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="1" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="2" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="3" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="4" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="5" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="6" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="7" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="8" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="9" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="10" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="11" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="12" />
+                        <Button Style="{StaticResource custom:WeeklyRow}" Grid.Column="1" Grid.Row="13" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

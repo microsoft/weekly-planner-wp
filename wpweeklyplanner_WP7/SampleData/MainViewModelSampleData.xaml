@@ -1,0 +1,14 @@
+<local:MainViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:wpweeklyplanner"
+    ClipBoard="Clipboard contents">
+    
+    <local:MainViewModel.Items>
+        <local:EventViewModel Text="Breakfast" DayOfWeek="0" StartHour="8" Duration="1"/>
+        <local:EventViewModel Text="Lecture" DayOfWeek="0" StartHour="9" Duration="2"/>
+        <local:EventViewModel Text="Lunch" DayOfWeek="0" StartHour="12" Duration="1"/>
+        <local:EventViewModel Text="Dinner" DayOfWeek="0" StartHour="18" Duration="1"/>
+    </local:MainViewModel.Items>
+    
+</local:MainViewModel>
