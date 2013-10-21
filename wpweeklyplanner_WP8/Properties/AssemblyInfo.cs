@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nokia")]
 [assembly: AssemblyProduct("wpweeklyplanner")]
-[assembly: AssemblyCopyright("Copyright © 2011-2013 Nokia Corporation. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright (c) 2011-2013 Nokia Corporation. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
