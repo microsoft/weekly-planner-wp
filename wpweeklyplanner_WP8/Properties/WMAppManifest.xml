@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="" />
-  <App xmlns="" ProductID="{e8bb2ff4-2b7e-4e15-a714-a03c1d05edc5}" Title="WeeklyPlanner" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="wpweeklyplanner author" Description="Sample description" Publisher="wpweeklyplanner" PublisherID="{b87532e4-e9a3-449d-a41a-d6b1188c415c}">
+  <App xmlns="" ProductID="{e8bb2ff4-2b7e-4e15-a714-a03c1d05edc5}" Title="WeeklyPlanner" RuntimeType="Silverlight" Version="1.3.0.0" Genre="apps.normal" Author="wpweeklyplanner author" Description="Sample description" Publisher="wpweeklyplanner" PublisherID="{b87532e4-e9a3-449d-a41a-d6b1188c415c}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />

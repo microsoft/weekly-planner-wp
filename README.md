@@ -61,8 +61,8 @@ Important folders:
 | wpweeklyplanner_WP7/SampleData | Application sample data. |
 | wpweeklyplanner_WP7/Themes | Application specific theming. |
 | wpweeklyplanner_WP7/ViewModels | ViewModels of the application. |
-| RSSReader_WP8/Content | Graphic files. |
-| RSSReader_WP8/Properties | WP8 Application property files. |
+| wpweeklyplanner_WP8/Content | Graphic files. |
+| wpweeklyplanner_WP8/Properties | WP8 Application property files. |
 
 Important files:
 
