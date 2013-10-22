@@ -29,15 +29,12 @@ Make sure you have the following installed:
 
  * Windows 8
  * Windows Phone SDK 8.0
- * NuGet Package Manager (https://nuget.org/), Visual Studio extension to install and update third-party libraries and tools in Visual Studio
+ * Latest NuGet Package Manager (>2.7.1) from https://nuget.org/ to enable NuGet Package Restore
 
 To build and run the sample:
 
  * Open the SLN file
    * File > Open Project, select the file wpweeklyplanner.sln
- * Install Windows Phone Toolkit for the project.
-   * Right click solution RSSReader in Solution Explorer -> select Manage NuGet Packages for Solution
-   * Search for 'wptoolkit' and install the 'Windows Phone toolkit' package 
  * Depending on whether you want to run the WP7 or WP8 version of the application, select either wprestaurantapp_WP7 or wprestaurantapp_WP8 as a StartUp Project.    
  * Select the target, for example 'Emulator WVGA'.
  * Press F5 to build the project and run it on the Windows Phone Emulator.
@@ -129,7 +126,7 @@ License
 Version history
 ---------------
 
- * 1.3.0 Add support for 720p resolution.
+ * 1.3.0 Add support for 720p resolution and NuGet package restore.
  * 1.2.0 Bug fixes and changes based on reviews
  * 1.1.0 Bug fixes and changes based on reviews; published on the Nokia Developer website.
  * 1.0.1 Support for Windows Phone OS version 7.1
