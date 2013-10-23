@@ -4,7 +4,7 @@ Weekly Planner
 This example application demonstrates how to build custom user interface controls for Windows Phone using Microsoft Silverlight.
 
 This example application is hosted in GitHub:
-https://github.com/nokia-developer/weekly-planner
+https://github.com/nokia-developer/weekly-planner-wp
 
 Developed with:
  * Microsoft Visual Studio 2010 Express for Windows Phone
