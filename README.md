@@ -3,6 +3,8 @@ Weekly Planner
 
 This example application demonstrates how to build custom user interface controls for Windows Phone using Microsoft Silverlight.
 
+![App design](/doc/WP7_weekly_planner.png?raw=true)
+
 This example application is hosted in GitHub:
 https://github.com/Microsoft/weekly-planner-wp
 
